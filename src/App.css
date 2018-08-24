@@ -13,5 +13,14 @@ header {
 }
 
 main {
+    flex: 1;
     margin: 1em;
+}
+
+input {
+    padding: 1em;
+    margin: 1em auto;
+    width: 30em;
+    border-style: none;
+    border-radius: 0.5em;
 }

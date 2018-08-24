@@ -13,6 +13,7 @@ class App extends React.Component {
                 <main>
                     <IngredientList ingredients={ingredients} />
                 </main>
+                <input type={'text'} placeholder={'Ingredient'} />
             </div>
         );
     }
