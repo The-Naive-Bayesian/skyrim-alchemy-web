@@ -1,5 +1,7 @@
 import * as React from 'react';
 import './App.css';
+import ingredients from './data/mock-data';
+import {IngredientList} from './components/IngredientList';
 
 class App extends React.Component {
     public render() {
@@ -9,7 +11,7 @@ class App extends React.Component {
                     Alchemy
                 </header>
                 <main>
-                    Main content goes here
+                    <IngredientList ingredients={ingredients} />
                 </main>
             </div>
         );
