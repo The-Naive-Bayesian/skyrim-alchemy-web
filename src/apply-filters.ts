@@ -1,7 +1,8 @@
+import {Ingredient} from "./models/Ingredient.model";
 
 export const applyFilters = (
-    ingredients: Array<{name: string}>,
-    ...filters: Array<(item: {name: string}) => boolean>
+    ingredients: Ingredient[],
+    ...filters: Array<(item: Ingredient) => boolean>
 ) => {
     let filteredIngredients = [...ingredients];
 
