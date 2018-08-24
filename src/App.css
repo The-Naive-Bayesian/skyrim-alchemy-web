@@ -1,0 +1,17 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    background-color: lightgray;
+}
+
+header {
+    padding: 1em;
+    background-color: mediumpurple;
+    color: white;
+}
+
+main {
+    margin: 1em;
+}
