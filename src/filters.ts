@@ -2,5 +2,5 @@
 export const nameContains = (substring: string): (
     (item: {name: string}) => boolean
 ) => (
-    ({name}) => name.includes(substring)
+    ({name}) => name.toLowerCase().includes(substring.toLowerCase())
 );
