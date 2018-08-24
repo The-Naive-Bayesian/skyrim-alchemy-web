@@ -1,4 +1,8 @@
 # Skyrim Alchemy Web App
+## The App
+See and use the app live, courtesy of Github Pages:
+[Alchemy App](https://the-naive-bayesian.github.io/skyrim-alchemy-web/).
+
 ## Goal
 Alchemy in Skyrim can be fun, but also tedious.
 If you're on your 100th play-through, a little help
