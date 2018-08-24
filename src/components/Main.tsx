@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ingredients from "../data/mock-data";
 import {IngredientList} from "./IngredientList";
+import './Main.css';
 
 export class Main extends React.Component<{}, {filterString: string}> {
     constructor(props: {}) {
