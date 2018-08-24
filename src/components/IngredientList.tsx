@@ -1,7 +1,12 @@
 import * as React from 'react';
+import './IngredientList.css';
 
 export const IngredientList = (props : {ingredients: Array<{name: string}>}) => (
-    <React.Fragment>
-        {props.ingredients.map(ingredient => <h2>{ingredient.name}</h2>)}
-    </React.Fragment>
+    <ul className={'ingredient-list'}>
+        {props.ingredients.map(ingredient => (
+            <li className={''}>
+                <h2>{ingredient.name}</h2>
+            </li>
+        ))}
+    </ul>
 );

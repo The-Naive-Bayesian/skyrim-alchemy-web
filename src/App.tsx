@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
-import ingredients from './data/mock-data';
 import {IngredientList} from './components/IngredientList';
+import ingredients from './data/mock-data';
 
 class App extends React.Component {
     public render() {
@@ -12,8 +12,8 @@ class App extends React.Component {
                 </header>
                 <main>
                     <IngredientList ingredients={ingredients} />
+                    <input type={'text'} placeholder={'Ingredient'} />
                 </main>
-                <input type={'text'} placeholder={'Ingredient'} />
             </div>
         );
     }
