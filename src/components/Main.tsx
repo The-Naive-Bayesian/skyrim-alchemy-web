@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ingredients from "../data/mock-data";
+import {IngredientProvider} from "./IngredientFilter";
 import {IngredientList} from "./IngredientList";
 import './Main.css';
 
@@ -19,14 +19,17 @@ export class Main extends React.Component<{}, {filterString: string}> {
     };
 
     public render() {
+        const {filterString} = this.state;
         return (
             <main>
-                <IngredientList ingredients={ingredients} />
+                <IngredientProvider filterString={filterString} render={(ingredients) => (
+                    <IngredientList ingredients={ingredients} />
+                )}/>
                 <input
                     type={'text'}
                     placeholder={'Ingredient'}
                     onChange={this.handleInput}
-                    value={this.state.filterString}
+                    value={filterString}
                 />
             </main>
         )
