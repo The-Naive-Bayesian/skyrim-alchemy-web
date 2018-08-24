@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import {IngredientList} from './components/IngredientList';
-import ingredients from './data/mock-data';
+import {Main} from "./components/Main";
 
 class App extends React.Component {
     public render() {
@@ -10,10 +9,7 @@ class App extends React.Component {
                 <header>
                     Alchemy
                 </header>
-                <main>
-                    <IngredientList ingredients={ingredients} />
-                    <input type={'text'} placeholder={'Ingredient'} />
-                </main>
+                <Main />
             </div>
         );
     }
