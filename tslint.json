@@ -9,5 +9,8 @@
       "src/**/*.test.ts"
     ]
   },
+  "rules": {
+    "jsx-no-lambda": false
+  },
   "defaultSeverity": "warning"
 }
