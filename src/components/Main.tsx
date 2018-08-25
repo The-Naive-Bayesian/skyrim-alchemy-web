@@ -22,15 +22,15 @@ export class Main extends React.Component<{}, {filterString: string}> {
         const {filterString} = this.state;
         return (
             <main>
-                <IngredientProvider filterString={filterString} render={(ingredients) => (
-                    <IngredientList ingredients={ingredients} />
-                )}/>
                 <input
                     type={'text'}
                     placeholder={'Ingredient'}
                     onChange={this.handleInput}
                     value={filterString}
                 />
+                <IngredientProvider filterString={filterString} render={(ingredients) => (
+                    <IngredientList ingredients={ingredients} />
+                )}/>
             </main>
         )
     }
