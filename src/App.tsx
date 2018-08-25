@@ -5,7 +5,7 @@ import {Main} from "./components/Main";
 class App extends React.Component {
     public render() {
         return (
-            <div className="App" style={{height: window.innerHeight}}>
+            <div className="App" style={{minHeight: window.innerHeight}}>
                 <header>
                     Alchemy
                 </header>
