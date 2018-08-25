@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {applyFilters} from "../apply-filters";
-import ingredients from "../data/mock-data";
+import ingredients from "../data/ingredients";
 import {nameContains} from "../filters";
 import {Ingredient} from "../models/Ingredient.model";
 
