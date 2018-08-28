@@ -1,0 +1,29 @@
+li {
+    width: 20em;
+    margin: 1em auto;
+    padding: 1em 0;
+    border-radius: 1em;
+    background-color: white;
+}
+
+span {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.icon-container {
+    flex: 1;
+    cursor: pointer;
+}
+
+svg {
+    margin: auto;
+}
+
+h2 {
+    flex: 4;
+    margin: 0;
+    text-align: left;
+    font-size: 1.25em;
+}
