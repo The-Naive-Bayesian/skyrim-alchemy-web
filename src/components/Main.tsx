@@ -4,6 +4,7 @@ import {IngredientList} from "./IngredientList";
 import './Main.css';
 import {Ingredient} from "../models/Ingredient.model";
 import {SelectedIngredientItem} from "./SelectedIngredientItem";
+import {EffectsList} from "./EffectsList";
 
 export class Main extends React.Component<{}, {filterString: string, selectedIngredients: Ingredient[]}> {
     constructor(props: {}) {
@@ -47,9 +48,14 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
                     onChange={this.handleInput}
                     value={filterString}
                 />
+                <EffectsList ingredients={this.state.selectedIngredients} />
                 {
                     this.state.selectedIngredients.map(ingredient => (
-                        <SelectedIngredientItem ingredient={ingredient} onDeselect={this.handleIngredientDeselection}/>
+                        <SelectedIngredientItem
+                            key={ingredient.name}
+                            ingredient={ingredient}
+                            onDeselect={this.handleIngredientDeselection}
+                        />
                     ))
                 }
                 <IngredientProvider

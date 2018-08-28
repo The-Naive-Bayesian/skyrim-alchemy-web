@@ -1,0 +1,20 @@
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 20em;
+    margin: auto auto 0.5em;
+}
+.effect {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin: 0.25em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.effect.active {
+    background-color: darkgreen;
+    color: white;
+}
