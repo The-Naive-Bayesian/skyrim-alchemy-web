@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Ingredient} from "../models/Ingredient.model";
 import './IngredientItem.css';
+import {AddIcon} from "./icons/add";
 
 export class IngredientItem extends React.Component<{ingredient: Ingredient}, {expanded: boolean}> {
     constructor(props: {ingredient: Ingredient}) {
@@ -17,7 +18,7 @@ export class IngredientItem extends React.Component<{ingredient: Ingredient}, {e
             <li className={'ingredient-item'} onClick={this.handleClick}>
                 <span>
                     <div className={'icon-container'}>
-                        <svg width={20} height={20}><circle cx={10} cy={10} r={10} fill={'green'}/></svg>
+                        <AddIcon style={{backgroundColor: 'green', color: 'white'}}/>
                     </div>
                 <h2>{ingredient.name}</h2>
                 </span>
