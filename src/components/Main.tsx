@@ -21,12 +21,19 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
         });
     };
 
-    public handleIngredientSelection = (ingredient: Ingredient) => {
+    public handleIngredientSelection = (ingredient: Ingredient): void => {
         this.setState({
             selectedIngredients: [
                 ...this.state.selectedIngredients,
                 ingredient
             ]
+        });
+    };
+
+    public handleIngredientDeselection = (ingredientName: string): void => {
+        const {selectedIngredients} = this.state;
+        this.setState({
+            selectedIngredients: selectedIngredients.filter(({name}) => name !== ingredientName)
         });
     };
 
@@ -42,7 +49,7 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
                 />
                 {
                     this.state.selectedIngredients.map(ingredient => (
-                        <SelectedIngredientItem ingredient={ingredient}/>
+                        <SelectedIngredientItem ingredient={ingredient} onDeselect={this.handleIngredientDeselection}/>
                     ))
                 }
                 <IngredientProvider
