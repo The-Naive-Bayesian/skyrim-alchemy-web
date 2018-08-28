@@ -1,4 +1,4 @@
-import {nameContains, nameDoesNotContain} from "./filters";
+import {nameContains, nameDoesNotContain, sharesEffect} from "./filters";
 
 describe('nameContains', () => {
     test('filter returned filters on strict substrings', () => {
@@ -45,3 +45,47 @@ describe('nameDoesNotContain', () => {
         expect(items.filter(filter)).toEqual([{name: 'def'}]);
     });
 });
+
+describe('sharesEffect', () => {
+    test('filter returned filters on single effect match', () => {
+        const items = [
+            {name: 'abc', effects: ['a','b']},
+            {name: 'def', effects: ['c','d']},
+        ];
+        const inputs = [
+            {name: 'a', effects: ['e', 'a']}
+        ];
+        const filter = sharesEffect(inputs);
+
+        expect(items.filter(filter)).toEqual([{name: 'abc', effects: ['a','b']}]);
+    });
+
+    test('filter returned filters on effect match in second ingredient input', () => {
+        const items = [
+            {name: 'abc', effects: ['a','b']},
+            {name: 'def', effects: ['c','d']},
+        ];
+        const inputs = [
+            {name: 'a', effects: ['e', 'f']},
+            {name: 'b', effects: ['a', 'e']},
+        ];
+        const filter = sharesEffect(inputs);
+
+        expect(items.filter(filter)).toEqual([{name: 'abc', effects: ['a','b']}]);
+    });
+
+    test('filter returned filters on full effect match', () => {
+        const items = [
+            {name: 'abc', effects: ['a','b']},
+            {name: 'def', effects: ['c','d']},
+        ];
+        const inputs = [
+            {name: 'a', effects: ['a', 'b']},
+        ];
+        const filter = sharesEffect(inputs);
+
+        expect(items.filter(filter)).toEqual([{name: 'abc', effects: ['a','b']}]);
+    });
+});
+
+
