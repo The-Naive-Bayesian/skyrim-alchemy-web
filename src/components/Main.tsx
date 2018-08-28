@@ -2,12 +2,15 @@ import * as React from 'react';
 import {IngredientProvider} from "./IngredientFilter";
 import {IngredientList} from "./IngredientList";
 import './Main.css';
+import {Ingredient} from "../models/Ingredient.model";
+import {SelectedIngredientItem} from "./SelectedIngredientItem";
 
-export class Main extends React.Component<{}, {filterString: string}> {
+export class Main extends React.Component<{}, {filterString: string, selectedIngredients: Ingredient[]}> {
     constructor(props: {}) {
         super(props);
         this.state = {
-            filterString: ''
+            filterString: '',
+            selectedIngredients: []
         }
     }
 
@@ -18,8 +21,17 @@ export class Main extends React.Component<{}, {filterString: string}> {
         });
     };
 
+    public handleIngredientSelection = (ingredient: Ingredient) => {
+        this.setState({
+            selectedIngredients: [
+                ...this.state.selectedIngredients,
+                ingredient
+            ]
+        });
+    };
+
     public render() {
-        const {filterString} = this.state;
+        const {filterString, selectedIngredients} = this.state;
         return (
             <main>
                 <input
@@ -28,8 +40,16 @@ export class Main extends React.Component<{}, {filterString: string}> {
                     onChange={this.handleInput}
                     value={filterString}
                 />
-                <IngredientProvider filterString={filterString} render={(ingredients) => (
-                    <IngredientList ingredients={ingredients} />
+                {
+                    this.state.selectedIngredients.map(ingredient => (
+                        <SelectedIngredientItem ingredient={ingredient}/>
+                    ))
+                }
+                <IngredientProvider
+                    filterString={filterString}
+                    selectedIngredients={selectedIngredients}
+                    render={(ingredients) => (
+                        <IngredientList ingredients={ingredients} onSelect={this.handleIngredientSelection} />
                 )}/>
             </main>
         )

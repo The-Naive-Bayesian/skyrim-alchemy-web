@@ -3,8 +3,13 @@ import {Ingredient} from "../models/Ingredient.model";
 import './IngredientItem.css';
 import {AddIcon} from "./icons/add";
 
-export class IngredientItem extends React.Component<{ingredient: Ingredient}, {expanded: boolean}> {
-    constructor(props: {ingredient: Ingredient}) {
+interface IngredientItemProps {
+    ingredient: Ingredient;
+    onSelect: (ingredient: Ingredient)=>void;
+}
+
+export class IngredientItem extends React.Component<IngredientItemProps, {expanded: boolean}> {
+    constructor(props: IngredientItemProps) {
         super(props);
         this.state = {
             expanded: false
@@ -12,12 +17,12 @@ export class IngredientItem extends React.Component<{ingredient: Ingredient}, {e
     }
 
     public render() {
-        const {ingredient} = this.props;
+        const {ingredient, onSelect} = this.props;
         const {expanded} = this.state;
         return (
             <li className={'ingredient-item'} onClick={this.handleClick}>
                 <span>
-                    <div className={'icon-container'}>
+                    <div className={'icon-container'} onClick={() => onSelect(ingredient)}>
                         <AddIcon style={{backgroundColor: 'green', color: 'white'}}/>
                     </div>
                 <h2>{ingredient.name}</h2>

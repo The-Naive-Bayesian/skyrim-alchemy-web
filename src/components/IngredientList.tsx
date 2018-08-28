@@ -3,10 +3,15 @@ import {Ingredient} from "../models/Ingredient.model";
 import {IngredientItem} from "./IngredientItem";
 import './IngredientList.css';
 
-export const IngredientList = (props : {ingredients: Ingredient[]}) => (
+interface IngredientListProps {
+    ingredients: Ingredient[];
+    onSelect: (ingredient: Ingredient)=>void;
+}
+
+export const IngredientList = ({ingredients, onSelect}: IngredientListProps) => (
     <ul className={'ingredient-list'}>
-        {props.ingredients.map(
-            ingredient => <IngredientItem ingredient={ingredient} key={ingredient.name}/>
+        {ingredients.map(
+            ingredient => <IngredientItem ingredient={ingredient} key={ingredient.name} onSelect={onSelect}/>
         )}
     </ul>
 );
