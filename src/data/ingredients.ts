@@ -24,7 +24,7 @@ const ingredients: Ingredient[] = [
     {name: "Deathbell",effects:['Damage Health','Ravage Stamina','Slow','Weakness to Poison']},
     {name: "Dragon's Tongue",effects:['Resist Fire','Fortify Barter','Fortify Illusion','Fortify Two-handed']},
     {name: "Dwarven Oil",effects:['Weakness to Magic','Regenerate Magicka','Fortify Illusion','Restore Magicka']},
-    {name: "Ectoplasm,",effects:['Restore Magicka','Fortify Destruction','Fortify Magicka','Damage Health']},
+    {name: "Ectoplasm",effects:['Restore Magicka','Fortify Destruction','Fortify Magicka','Damage Health']},
     {name: "Elves Ear",effects:['Restore Magicka','Weakness to Frost','Fortify Marksman','Resist Fire']},
     {name: "Eye of Sabre Cat",effects:['Restore Stamina','Damage Magicka','Ravage Health','Restore Health']},
     {name: "Falmer Ear",effects:['Damage Health','Frenzy','Resist Poison','Fortify Lockpicking']},
