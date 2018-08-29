@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {applyFilters} from "../apply-filters";
 import ingredients from "../data/ingredients";
-import {nameContains, nameDoesNotContain, sharesEffect} from "../filters";
+import {effectOrNameContains, nameDoesNotContain, sharesEffect} from "../filters";
 import {Ingredient} from "../models/Ingredient.model";
 
 // Define prop types
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const IngredientProvider = ({filterString, selectedIngredients, render}: IProps) => {
-    const nameFilter = nameContains(filterString);
+    const nameFilter = effectOrNameContains(filterString);
     const ingredientNameFilters = selectedIngredients.map(ingredient => nameDoesNotContain(ingredient.name));
     const additionalFilters = [];
     if (selectedIngredients.length > 0) {

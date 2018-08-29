@@ -118,3 +118,58 @@ describe('effectNamesContain', () => {
     });
 });
 
+describe('effectOrNameContains', () => {
+    describe('names', () => {
+        test('filter returned filters on strict substrings', () => {
+            const items = [{name: 'abc'}, {name: 'def'}];
+            const filter = nameContains('ab');
+
+            expect(items.filter(filter)).toEqual([{name: 'abc'}]);
+        });
+
+        test('filter returned filters on full string match', () => {
+            const items = [{name: 'abc'}, {name: 'def'}];
+            const filter = nameContains('abc');
+
+            expect(items.filter(filter)).toEqual([{name: 'abc'}]);
+        });
+
+        test('filter returned is not case sensitive', () => {
+            const items = [{name: 'aBC'}, {name: 'def'}];
+            const filter = nameContains('ab');
+
+            expect(items.filter(filter)).toEqual([{name: 'aBC'}]);
+        });
+    });
+
+    describe('effects', () => {
+        test('filter returned filters on strict substrings', () => {
+            const items = [{effects: ['abc']}, {effects: ['def']}];
+            const filter = effectNamesContain('ab');
+
+            expect(items.filter(filter)).toEqual([{effects: ['abc']}]);
+        });
+
+        test('filter returned filters on full string match', () => {
+            const items = [{effects: ['abc']}, {effects: ['def']}];
+            const filter = effectNamesContain('abc');
+
+            expect(items.filter(filter)).toEqual([{effects: ['abc']}]);
+        });
+
+        test('filter returned filters on second effect', () => {
+            const items = [{effects: ['abc', 'ghi']}, {effects: ['def']}];
+            const filter = effectNamesContain('ghi');
+
+            expect(items.filter(filter)).toEqual([{effects: ['abc', 'ghi']}]);
+        });
+
+        test('filter returned is not case sensitive', () => {
+            const items = [{effects: ['aBC']}, {effects: ['def']}];
+            const filter = effectNamesContain('ab');
+
+            expect(items.filter(filter)).toEqual([{effects: ['aBC']}]);
+        });
+    })
+});
+

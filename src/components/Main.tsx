@@ -44,7 +44,7 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
             <main>
                 <input
                     type={'text'}
-                    placeholder={'Ingredient'}
+                    placeholder={'Ingredient or effect'}
                     onChange={this.handleInput}
                     value={filterString}
                 />

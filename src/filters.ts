@@ -20,6 +20,14 @@ export const effectNamesContain = (substring: string): (
     )
 );
 
+export const effectOrNameContains = (substring: string): (
+    (item: Ingredient) => boolean
+) => (
+    ({name, effects}) => name.toLowerCase().includes(substring.toLowerCase()) || effects.some(
+        effect => effect.toLowerCase().includes(substring.toLowerCase())
+    )
+);
+
 export const sharesEffect = (ingredients: Ingredient[]): (
     (item: Ingredient) => boolean
 ) => {
