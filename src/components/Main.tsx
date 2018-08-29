@@ -23,12 +23,16 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
     };
 
     public handleIngredientSelection = (ingredient: Ingredient): void => {
-        this.setState({
-            selectedIngredients: [
-                ...this.state.selectedIngredients,
-                ingredient
-            ]
-        });
+        if (this.state.selectedIngredients.length < 3) {
+            this.setState({
+                selectedIngredients: [
+                    ...this.state.selectedIngredients,
+                    ingredient
+                ]
+            });
+        } else {
+            console.warn('Attempted to add more than 3 allowed ingredients');
+        }
     };
 
     public handleIngredientDeselection = (ingredientName: string): void => {
