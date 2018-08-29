@@ -1,4 +1,4 @@
-import {nameContains, nameDoesNotContain, sharesEffect} from "./filters";
+import {effectNamesContain, nameContains, nameDoesNotContain, sharesEffect} from "./filters";
 
 describe('nameContains', () => {
     test('filter returned filters on strict substrings', () => {
@@ -88,4 +88,33 @@ describe('sharesEffect', () => {
     });
 });
 
+describe('effectNamesContain', () => {
+    test('filter returned filters on strict substrings', () => {
+        const items = [{effects: ['abc']}, {effects: ['def']}];
+        const filter = effectNamesContain('ab');
+
+        expect(items.filter(filter)).toEqual([{effects: ['abc']}]);
+    });
+
+    test('filter returned filters on full string match', () => {
+        const items = [{effects: ['abc']}, {effects: ['def']}];
+        const filter = effectNamesContain('abc');
+
+        expect(items.filter(filter)).toEqual([{effects: ['abc']}]);
+    });
+
+    test('filter returned filters on second effect', () => {
+        const items = [{effects: ['abc', 'ghi']}, {effects: ['def']}];
+        const filter = effectNamesContain('ghi');
+
+        expect(items.filter(filter)).toEqual([{effects: ['abc', 'ghi']}]);
+    });
+
+    test('filter returned is not case sensitive', () => {
+        const items = [{effects: ['aBC']}, {effects: ['def']}];
+        const filter = effectNamesContain('ab');
+
+        expect(items.filter(filter)).toEqual([{effects: ['aBC']}]);
+    });
+});
 

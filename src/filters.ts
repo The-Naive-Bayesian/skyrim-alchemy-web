@@ -12,6 +12,14 @@ export const nameDoesNotContain = (substring: string): (
     ({name}) => !name.toLowerCase().includes(substring.toLowerCase())
 );
 
+export const effectNamesContain = (substring: string): (
+    (item: Ingredient) => boolean
+) => (
+    ({effects}) => effects.some(
+        effect => effect.toLowerCase().includes(substring.toLowerCase())
+    )
+);
+
 export const sharesEffect = (ingredients: Ingredient[]): (
     (item: Ingredient) => boolean
 ) => {
