@@ -72,6 +72,9 @@ export class Main extends React.Component<{}, IMainState> {
 
     public render() {
         const {filterString, filterEffects, selectedIngredients} = this.state;
+        const selectedIngredientEffects = selectedIngredients
+            .map(ing => ing.effects)
+            .reduce((effects, ingredientEffects) => [...effects, ...ingredientEffects], [])
         return (
             <main>
                 <input
@@ -99,7 +102,11 @@ export class Main extends React.Component<{}, IMainState> {
                     filterEffects={filterEffects}
                     selectedIngredients={selectedIngredients}
                     render={(ingredients) => (
-                        <IngredientList ingredients={ingredients} onSelect={this.handleIngredientSelection} />
+                        <IngredientList
+                            ingredients={ingredients}
+                            onSelect={this.handleIngredientSelection}
+                            selectedEffects={selectedIngredientEffects}
+                        />
                 )}/>
             </main>
         )

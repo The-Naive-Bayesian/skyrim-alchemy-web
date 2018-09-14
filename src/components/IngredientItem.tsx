@@ -6,19 +6,27 @@ import {AddIcon} from "./icons/add";
 interface IngredientItemProps {
     ingredient: Ingredient;
     onSelect: (ingredient: Ingredient)=>void;
+    selectedEffects: string[];
 }
 
-export class IngredientItem extends React.Component<IngredientItemProps, {expanded: boolean}> {
+export class IngredientItem extends React.Component<IngredientItemProps, {expanded: boolean, selectedEffects: string[]}> {
     constructor(props: IngredientItemProps) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            selectedEffects: []
         };
+    }
+
+    componentWillReceiveProps(props: IngredientItemProps) {
+        this.setState({
+            selectedEffects: props.selectedEffects
+        });
     }
 
     public render() {
         const {ingredient, onSelect} = this.props;
-        const {expanded} = this.state;
+        const {expanded, selectedEffects} = this.state;
         return (
             <li className={'ingredient-item'} onClick={this.handleClick}>
                 <span>
@@ -29,7 +37,16 @@ export class IngredientItem extends React.Component<IngredientItemProps, {expand
                 </span>
                 {
                     expanded
-                        ? ingredient.effects.map(effect => <p key={effect}>{effect}</p>)
+                        ? ingredient.effects.map(effect => {
+                            const sharedEffect = selectedEffects.some(e => e===effect);
+                            return (
+                                <p
+                                    key={effect}
+                                    style={sharedEffect ? {color: 'green', fontWeight: 'bolder'} : {}}
+                                >
+                                    {effect}
+                                </p>
+                            )})
                         : null
                 }
             </li>

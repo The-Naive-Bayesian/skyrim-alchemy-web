@@ -6,12 +6,20 @@ import './IngredientList.css';
 interface IngredientListProps {
     ingredients: Ingredient[];
     onSelect: (ingredient: Ingredient)=>void;
+    selectedEffects: string[];
 }
 
-export const IngredientList = ({ingredients, onSelect}: IngredientListProps) => (
+export const IngredientList = ({ingredients, onSelect, selectedEffects}: IngredientListProps) => (
     <ul className={'ingredient-list'}>
         {ingredients.map(
-            ingredient => <IngredientItem ingredient={ingredient} key={ingredient.name} onSelect={onSelect}/>
+            ingredient => (
+                <IngredientItem
+                    ingredient={ingredient}
+                    key={ingredient.name}
+                    onSelect={onSelect}
+                    selectedEffects={selectedEffects}
+                />
+            )
         )}
     </ul>
 );
