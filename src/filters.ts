@@ -32,13 +32,21 @@ export const sharesEffect = (ingredients: Ingredient[]): (
     (item: Ingredient) => boolean
 ) => {
     const ingredientEffectsReducer: (ingredient: Ingredient) => any = ({effects}) => {
-        // Accept an Ingredient and return an Object with "[effect]: true" for ingredient's effects
-        return effects.reduce((obj, effect) => Object.assign(obj, {[effect]: true}), {});
+        // Accept an Ingredient and return an Object with "[effect]: 1" for ingredient's effects
+        return effects.reduce((obj, effect) => Object.assign(obj, {[effect]: 1}), {});
     };
-    const filterEffects = ingredients.reduce((effects, ingredient) => (
+    const filterEffects = ingredients.reduce((effects, ingredient) => {
         // Reduce all ingredients into one effects object
-        Object.assign(effects, ingredientEffectsReducer(ingredient))
-    ), {});
+        for (let effect in ingredientEffectsReducer(ingredient)) {
+            if (effects[effect]) {
+                effects[effect] += 1;
+            } else {
+                effects[effect] = 1;
+            }
+        }
+        return effects;
+    }, {});
+
     // TODO: improve efficiency, especially in cases where first effect is a match
-    return ({effects}) => effects.reduce((shares, effect) => shares || filterEffects[effect], false)
+    return ({effects}) => effects.reduce((shares, effect) => shares || filterEffects[effect] === 1, false)
 };
