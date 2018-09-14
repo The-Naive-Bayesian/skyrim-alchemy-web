@@ -6,11 +6,18 @@ import {Ingredient} from "../models/Ingredient.model";
 import {SelectedIngredientItem} from "./SelectedIngredientItem";
 import {EffectsList} from "./EffectsList";
 
-export class Main extends React.Component<{}, {filterString: string, selectedIngredients: Ingredient[]}> {
+interface IMainState {
+    filterString: string;
+    filterEffects: string[];
+    selectedIngredients: Ingredient[];
+}
+
+export class Main extends React.Component<{}, IMainState> {
     constructor(props: {}) {
         super(props);
         this.state = {
             filterString: '',
+            filterEffects: [],
             selectedIngredients: []
         }
     }
@@ -25,6 +32,8 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
     public handleIngredientSelection = (ingredient: Ingredient): void => {
         if (this.state.selectedIngredients.length < 3) {
             this.setState({
+                filterString: '',
+                filterEffects: [],
                 selectedIngredients: [
                     ...this.state.selectedIngredients,
                     ingredient
@@ -42,8 +51,27 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
         });
     };
 
+    public toggleEffectSelection = (effectName: string): void => {
+        const currentEffects = this.state.filterEffects;
+        const index = currentEffects.findIndex(effect => effect === effectName);
+
+        if (index > -1) {
+            this.setState({
+                filterEffects: [
+                    ...currentEffects.slice(0, index),
+                    ...currentEffects.slice(index + 1)
+                ]
+            });
+        } else {
+            this.setState({
+                filterEffects: [...currentEffects, effectName]
+            });
+        }
+        console.log(this.state);
+    };
+
     public render() {
-        const {filterString, selectedIngredients} = this.state;
+        const {filterString, filterEffects, selectedIngredients} = this.state;
         return (
             <main>
                 <input
@@ -52,7 +80,11 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
                     onChange={this.handleInput}
                     value={filterString}
                 />
-                <EffectsList ingredients={this.state.selectedIngredients} />
+                <EffectsList
+                    ingredients={this.state.selectedIngredients}
+                    toggleEffectSelection={this.toggleEffectSelection}
+                    filteredEffects={[...filterEffects, filterString]}
+                />
                 {
                     this.state.selectedIngredients.map(ingredient => (
                         <SelectedIngredientItem
@@ -64,6 +96,7 @@ export class Main extends React.Component<{}, {filterString: string, selectedIng
                 }
                 <IngredientProvider
                     filterString={filterString}
+                    filterEffects={filterEffects}
                     selectedIngredients={selectedIngredients}
                     render={(ingredients) => (
                         <IngredientList ingredients={ingredients} onSelect={this.handleIngredientSelection} />

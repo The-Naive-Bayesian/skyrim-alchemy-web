@@ -2,7 +2,13 @@ import * as React from "react";
 import {Ingredient} from "../models/Ingredient.model";
 import './EffectsList.css';
 
-export const EffectsList = ({ingredients}: {ingredients: Ingredient[]}) => {
+interface IEffectsListProps {
+    ingredients: Ingredient[];
+    toggleEffectSelection: (effectName: string) => void;
+    filteredEffects: string[];
+}
+
+export const EffectsList = ({ingredients, toggleEffectSelection, filteredEffects}: IEffectsListProps) => {
     const effects = {};
     ingredients.forEach(ingredient => {
         ingredient.effects.forEach(effect => {
@@ -15,9 +21,13 @@ export const EffectsList = ({ingredients}: {ingredients: Ingredient[]}) => {
         {
             Object.keys(effects).map((effect) => (
                 <p
-                    className={`effect ${effects[effect] ? 'active' : ''}`}
+                    className={
+                        `effect ${effects[effect] ? 'active' : ''}
+                        ${filteredEffects.some(e => e.toLowerCase() === effect.toLowerCase()) ? 'filter' : ''}`
+                    }
                     key={effect}
                     style={{fontSize: '0.25em'}}
+                    onClick={() => toggleEffectSelection(effect)}
                 >
                     {effect}
                 </p>
