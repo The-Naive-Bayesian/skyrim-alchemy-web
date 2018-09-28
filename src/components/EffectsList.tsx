@@ -26,7 +26,7 @@ export const EffectsList = ({ingredients, toggleEffectSelection, filteredEffects
                         ${filteredEffects.some(e => e.toLowerCase() === effect.toLowerCase()) ? 'filter' : ''}`
                     }
                     key={effect}
-                    style={{fontSize: '0.25em'}}
+                    style={{fontSize: '0.6em'}}
                     onClick={() => toggleEffectSelection(effect)}
                 >
                     {effect}
